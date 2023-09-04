@@ -52,9 +52,9 @@ const summaryDiv = document.createElement('div');
 const okButton = document.getElementById('ok-button');
 
 function updateProgressBar() {
-  const progress = (wordsToTranslate.length - currentWordIndex);
+  const progress = (currentWordIndex / wordsToTranslate.length) * 100;
   progressBar.value = progress;
-  progressLabel.textContent = `To translate: ${progress}`;
+  progressLabel.textContent = `To translate: ${wordsToTranslate.length - currentWordIndex}`;
 }
 
 function displayNextWord() {
