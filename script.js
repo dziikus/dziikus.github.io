@@ -52,9 +52,9 @@ const summaryDiv = document.createElement('div');
 const okButton = document.getElementById('ok-button');
 
 function updateProgressBar() {
-  const progress = (currentWordIndex / wordsToTranslate.length) * 100;
+  const progress = (wordsToTranslate.length - currentWordIndex);
   progressBar.value = progress;
-  progressLabel.textContent = `${progress.toFixed(1)}%`;
+  progressLabel.textContent = `To translate: ${progress.toFixed(1)}`;
 }
 
 function displayNextWord() {
@@ -101,9 +101,9 @@ function checkTranslationLogic(){
   const currentWord = wordsToTranslate[currentWordIndex];
 
   if (userTranslation === currentWord.french) {
+    feedbackDiv.textContent = `Very good! The correct translation of "${wordsToTranslate[currentWordIndex].german}" is "${wordsToTranslate[currentWordIndex].french}"`;
     correctCount++;
     currentWordIndex++;
-    feedbackDiv.textContent = '';
   } else {
     feedbackDiv.textContent = `Incorrect. The correct translation of "${wordsToTranslate[currentWordIndex].german}" is "${wordsToTranslate[currentWordIndex].french}".`;  
     wordsToTranslate.push(wordsToTranslate[currentWordIndex]);
