@@ -30,3 +30,8 @@ body {
   text-align: center;
 }
 
+#word-input {
+  width: 300px; 
+  height: 20px; 
+}
+
