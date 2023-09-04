@@ -61,7 +61,7 @@ function displayNextWord() {
   if (currentWordIndex < wordsToTranslate.length) {
     wordInput.value = '';
     const nextWord = wordsToTranslate[currentWordIndex].german;
-    wordInput.placeholder = `Translate "${nextWord}"`;
+    wordInput.placeholder = `${nextWord}`;
   } else {
     displaySummary();
   }
