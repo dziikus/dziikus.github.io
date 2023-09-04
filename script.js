@@ -14,6 +14,18 @@ const wordsToTranslate = [
   { german: 'die Shorts', french: 'le short' },
   { german: 'die Hose', french: 'le pantalon' },
   { german: 'das Hemd', french: 'la chemise' },
+  { german: 'der Pullover', french: 'le pull' },
+  { german: 'das T-Shirt', french: 'le tee-shirt' },
+  { german: 'die Kleidungsstuck', french: 'le vetement' },
+  { german: 'der Turm', french: 'la tour' },
+  { german: 'das Bauwerk', french: 'le monument' },
+  { german: 'das Lane', french: 'le pays' },
+  { german: 'die Stadt', french: 'le ville' },
+  { german: 'die Krawatte', french: 'la cravate' },
+  { german: 'die Kleidungsstuck', french: 'le vetement' },
+  { german: 'der Rock, der Jupe', french: 'la jupe' },
+  { german: 'das Kleid', french: 'la robe' },
+
   // Add more words here
 ];
 
