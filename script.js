@@ -12,7 +12,7 @@ const wordsToTranslate = [
 { german: 'in der Nähe',  english : 'nearby' },
 { german: 'weit weg',  english : 'far away' },
 { german: 'wächst',  english : 'grows' }, 
-{ german: ' wächst nicht in/im',  english : "doesn't grow in" },
+{ german: ' wächst nicht in/im',  english : 'doesn\'t grow in' },
 { german: 'weniger heizen',  english : 'reduce heating' },
 { german: 'wiederverwenden',  english : 're-use' }, 
 { german: 'recyceln, wiederverwerten',  english : 'recycle' },
