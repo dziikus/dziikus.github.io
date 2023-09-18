@@ -1,30 +1,26 @@
 const wordsToTranslate = [
-  { german: 'die Uhr', french: 'la montre' },
-  { german: 'gross', french: 'grand/grande' },
-  { german: 'klein', french: 'petit/petite' },
-  { german: 'rund', french: 'rond/ronde' },
-  { german: 'kurz', french: 'court/courte' },
-  { german: 'long', french: 'long/longue' },
-  { german: 'warm/heiss', french: 'chaud/chaude' },
-  { german: 'kalt', french: 'froid/froide' },
-  { german: 'der Montel', french: 'le manteau' }, 
-  { german: 'der Hut', french: 'le chapeau' },
-  { german: 'die Jacke', french: 'la veste' },
-  { german: 'die Socke', french: 'la chaussette' },
-  { german: 'die Shorts', french: 'le short' },
-  { german: 'die Hose', french: 'le pantalon' },
-  { german: 'das Hemd', french: 'la chemise' },
-  { german: 'der Pullover', french: 'le pull' },
-  { german: 'das T-Shirt', french: 'le tee-shirt' },
-  { german: 'die Kleidungsstuck', french: 'le vetement' },
-  { german: 'der Turm', french: 'la tour' },
-  { german: 'das Bauwerk', french: 'le monument' },
-  { german: 'das Lane', french: 'le pays' },
-  { german: 'die Stadt', french: 'le ville' },
-  { german: 'die Krawatte', french: 'la cravate' },
-  { german: 'die Kleidungsstuck', french: 'le vetement' },
-  { german: 'der Rock, der Jupe', french: 'la jupe' },
-  { german: 'das Kleid', french: 'la robe' },
+{ german: 'Molkereiprodukte', english: 'dairy products' },
+{ german: 'Fleisch',  english : 'meat' },
+{ german: 'verarbeitetes Nahrungsmittel',  english : 'processed food' },
+{ german: 'wie viel',  english : 'how much' },
+{ german: 'wie viele',  english : 'how many' },
+{ german: 'Lebensmittelverschwendung',  english : 'food waste' },
+{ german: 'Kompost',  english : 'compost' },  
+{ german: 'Mülleimer / Abfalleimer',  english : 'rubbish bin / dustbin' },
+{ german: 'aus der Region',  english : 'regional' },
+{ german: 'saisonal, der Jahreszeit entsprechend',  english : 'seasonal' },
+{ german: 'in der Nähe',  english : 'nearby' },
+{ german: 'weit weg',  english : 'far away' },
+{ german: 'wächst',  english : 'grows' }, 
+{ german: ' wächst nicht in/im',  english : 'doesn't grow in' },
+{ german: 'weniger heizen',  english : 'reduce heating' },
+{ german: 'wiederverwenden',  english : 're-use' }, 
+{ german: 'recyceln, wiederverwerten',  english : 'recycle' },
+{ german: 'wegwerfen',  english : 'throw away' }, 
+{ german: 'wegwerfen (past)',  english : 'threw away' }, 
+{ german: 'verschenken',  english : 'give away' }, 
+{ german: 'verschenken (past)',  english : 'gave away' }, 
+{ german: 'abgepackte Portionen',  english : 'prepackaged portions' }, 
 
   // Add more words here
 ];
@@ -100,12 +96,12 @@ function checkTranslationLogic(){
   const userTranslation = wordInput.value.trim().toLowerCase();
   const currentWord = wordsToTranslate[currentWordIndex];
 
-  if (userTranslation === currentWord.french) {
+  if (userTranslation === currentWord.english) {
     feedbackDiv.textContent = `Very good! `;
     correctCount++;
     currentWordIndex++;
   } else {
-    feedbackDiv.textContent = `Incorrect. The correct translation of "${wordsToTranslate[currentWordIndex].german}" is "${wordsToTranslate[currentWordIndex].french}".`;  
+    feedbackDiv.textContent = `Incorrect. The correct translation of "${wordsToTranslate[currentWordIndex].german}" is "${wordsToTranslate[currentWordIndex].english}".`;  
     wordsToTranslate.push(wordsToTranslate[currentWordIndex]);
   }
   updateProgressBar();
