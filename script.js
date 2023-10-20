@@ -11,7 +11,7 @@ const wordsToTranslate = [
 { german: 'Wo?', english: 'Ou?' },
 { german: 'Wann?', english: 'Quand?' },
 { german: 'Was?', english: 'Quoi?' },
-{ german: 'Was? machst du?', english: 'Qu'est-ce que tu fais?' },
+{ german: 'Was? machst du?', english: 'Qu\'est-ce que tu fais?' },
 { german: 'Wer?', english: 'Qui?' },
 { german: 'auf', english: 'sur' },
 { german: 'unter', english: 'sous' },
