@@ -1,11 +1,11 @@
 const wordsToTranslate = [
 { german: 'die Hausaufgaben machen', english: 'faire les devoirs' },
 { german: 'zu Hause', english: 'a la maison' },
-{ german: 'in der Schule', english: 'a l'ecole' },
+{ german: 'in der Schule', english: 'a l\'ecole' },
 { german: 'auf einer Insel', english: 'sur une ile' },
 { german: 'in der Metro, in der U-Bahn', english: 'dans le metro' },
 { german: 'draussen', english: 'dehors' },
-{ german: 'im Wasser', english: 'dans l'eau' },
+{ german: 'im Wasser', english: 'dans l\'eau' },
 { german: 'auf dem Tabletcomputer', english: 'sur la tablette' },
 { german: 'Wie?', english: 'Comment?' },
 { german: 'Wo?', english: 'Ou?' },
