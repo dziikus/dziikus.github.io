@@ -101,7 +101,7 @@ function checkTranslationLogic(){
     correctCount++;
     currentWordIndex++;
   } else {
-    feedbackDiv.textContent = `Incorrect. The correct translation of "${wordsToTranslate[currentWordIndex].german}" is "${wordsToTranslate[currentWordIndex].english}".`;  
+    feedbackDiv.textContent = `Incorrect. The correct translation of "${currentWord.german}" is "${currentWord.english}", you provided "${userTranslation}".`;  
     wordsToTranslate.push(wordsToTranslate[currentWordIndex]);
   }
   updateProgressBar();
