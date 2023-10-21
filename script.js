@@ -93,7 +93,7 @@ function handleOkButtonClick() {
 }
 
 function checkTranslationLogic(){
-  const userTranslation = wordInput.value.trim().toLowerCase();
+  const userTranslation = wordInput.value.trim();
   const currentWord = wordsToTranslate[currentWordIndex];
 
   if (userTranslation === currentWord.english) {
