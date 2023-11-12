@@ -8,7 +8,7 @@ const wordsToTranslate = [
 { german: 'alleine', english: 'soul' },
 { german: 'der Morgen,am Morgen', english: 'le matin' },
 { german: 'am Mittag', english: 'à midi' },
-{ german: 'der Nachmittag,am Nachmittag', english: "l'après-midi" },
+{ german: 'der Nachmittag,am Nachmittag', english: "l après-midi" },
 { german: 'der Abend,am Abend', english: 'le soir' },
 { german: 'die Nacht,in der Nacht', english: 'la nuit' },
 { german: 'das Wochenende,am Wochenende', english: 'le week-end' },
