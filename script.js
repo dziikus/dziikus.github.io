@@ -6,7 +6,7 @@ const wordsToTranslate = [
 { german: 'überleben', english: 'survive' },
 { german: 'sich ernähren von', english: 'feed/fed on' },
 { german: 'schützen vor', english: 'protect from' },
-{ german: 'Eier legen', english: 'lay/laid eggs' }
+{ german: 'Eier legen', english: 'lay/laid eggs' },
 { german: 'zur Welt bringen', english: 'give/gave birth' },
 { german: 'sich kümmern um', english: 'care for' },
 { german: 'bewegen,vorrücken', english: 'move' },
