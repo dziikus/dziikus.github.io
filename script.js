@@ -1,7 +1,7 @@
 const wordsToTranslate = [
 { german: 'Jahrhundert', english: 'century pl.centuries' },
 { german: 'hier:Ereignis', english: 'event' },
-{ german: 'ausbrechen', english: 'break past:broke' },
+{ german: 'ausbrechen', english: 'break past:broke out' },
 { german: 'bekommen,erhalten', english: 'get past:got' },
 { german: 'beginnen,anfangen', english: 'begin past:began' },
 { german: 'hören', english: 'hear past:heard' },
