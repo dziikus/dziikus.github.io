@@ -1,36 +1,29 @@
-const wordsToTranslate = [
-{ german: 'Besucher/-in', english: 'visitor' },
-{ german: 'Jugendherberge', english: 'youth hostel' },
-{ german: 'mieten', english: 'rent' },
-{ german: 'Seilbahn', english: 'cable car' },
-{ german: 'treffen', english: 'meet past: met' },
-{ german: 'einige, etwas', english: 'some/any' },
-{ german: 'etwas', english: 'something/anything' },
-{ german: 'jemand, irgendjemand', english: 'somebody/anybody' },
-{ german: 'irgendwo', english: 'somewhere/anywhere' },
-{ german: 'Führer/-in', english: 'guide' },
-{ german: 'Frau', english: 'woman pl. women' },
-{ german: 'Mann', english: 'man pl. men' },
-{ german: 'Schlagzeile', english: 'headline' },
-{ german: 'Tragödie', english: 'tragedy pl. tragedies' },
-{ german: 'Bergsteiger/-in', english: 'mountaineer' },
-{ german: 'Ferienziel, Reiseziel', english: 'holiday destination' },
-{ german: 'Höhepunkt, Highlight', english: 'highlight' },
-{ german: 'allgemeine Information', english: 'general information' },
-{ german: 'schön', english: 'beautiful' },
-{ german: 'Sicht, Aussicht', english: 'view' },
-{ german: 'sollte nicht verpassen', english: "shouldn't miss" }
+const wordsToTranslate = 
 
-  // Add more words here
-];
 
-// Shuffle words array to randomize the order
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-}
+
+  { german: 'das Leben', english: 'la vie' }, 
+  { german: 'eine Hoffnung', english: 'un espoir' }, 
+  { german: 'ein Baum', english: 'un arbre' }, 
+  { german: 'das Gras', english: 'lherbe' }, 
+  { german: 'das Blatt', english: 'la feuille' }, 
+  { german: 'der Himmel', english: 'le ciel' }, 
+  { german: 'das Glück', english: 'le bonheur' }, 
+  { german: 'die Welt', english: 'le monde' }, 
+  { german: 'die Sonne', english: 'le soleil' }, 
+  { german: 'der Mond', english: 'la lune' }, 
+  { german: 'ein Stern', english: 'une etoile' }, 
+  { german: 'die Freude, das Vergnügen', english: 'le plaisir' }, 
+  { german: 'die Erde', english: 'la terre' }, 
+  { german: 'die Gesundheit', english: 'la santé' }, 
+  { german: 'das Blut', english: 'le sang' }, 
+  { german: 'die Gefahr', english: 'le danger' }, 
+  { german: 'eine Liebe', english: 'un amour' }, 
+    { german: 'der Regen', english: 'la pluie' }, 
+  { german: 'es regnet', english: 'il pleut' }, 
+  { german: 'der Grund', english: 'la raison' }, 
+    { german: 'morgen', english: 'demain' },
+
 
 shuffleArray(wordsToTranslate);
 
