@@ -1,9 +1,6 @@
-const wordsToTranslate = 
-
-
-
+const wordsToTranslate = [
   { german: 'das Leben', english: 'la vie' }, 
-  { german: 'eine Hoffnung', english: 'un espoir' }, 
+  { german: 'eine Hoffnung', english: 'un espoir' },
   { german: 'ein Baum', english: 'un arbre' }, 
   { german: 'das Gras', english: 'lherbe' }, 
   { german: 'das Blatt', english: 'la feuille' }, 
@@ -19,12 +16,11 @@ const wordsToTranslate =
   { german: 'das Blut', english: 'le sang' }, 
   { german: 'die Gefahr', english: 'le danger' }, 
   { german: 'eine Liebe', english: 'un amour' }, 
-    { german: 'der Regen', english: 'la pluie' }, 
+  { german: 'der Regen', english: 'la pluie' }, 
   { german: 'es regnet', english: 'il pleut' }, 
   { german: 'der Grund', english: 'la raison' }, 
-    { german: 'morgen', english: 'demain' },
-
-
+  { german: 'morgen', english: 'demain' }
+];
 shuffleArray(wordsToTranslate);
 
 let currentWordIndex = 0;
