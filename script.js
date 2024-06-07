@@ -12,7 +12,7 @@ const wordsToTranslate = [
   { german: 'ein Stern', english: 'une etoile' }, 
   { german: 'die Freude, das Vergnügen', english: 'le plaisir' }, 
   { german: 'die Erde', english: 'la terre' }, 
-  { german: 'die Gesundheit', english: 'la santé' }, 
+  { german: 'die Gesundheit', english: 'la sante' }, 
   { german: 'das Blut', english: 'le sang' }, 
   { german: 'die Gefahr', english: 'le danger' }, 
   { german: 'eine Liebe', english: 'un amour' }, 
