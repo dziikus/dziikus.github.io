@@ -32,7 +32,7 @@ const wordsToTranslate = [
     { german: "(za)trzymać", english: "keep kept kept" },
     { german: "wiedzieć, znać", english: "know knew known" },
     { german: "uczyć się", english: "learn learnt/learned learnt/learned" },
-
+    { german: "opuszczać", english: "leave left left" },
 ];
 
 function shuffleArray(array) {
