@@ -1,37 +1,7 @@
-const wordsToTranslate = [
-    { german: "być", english: "be was/were been" },
-    { german: "stawać się", english: "become became become" },
-    { german: "łamać, psuć (się), potłuc", english: "break broke broken" },
-    { german: "przynosić", english: "bring brought brought" },
-    { german: "budować", english: "build built built" },
-    { german: "kupować", english: "buy bought bought" },
-    { german: "łapać", english: "catch caught caught" },
-    { german: "wybierać", english: "choose chose chosen" },
-    { german: "przychodzić", english: "come came come" },
-    { german: "kosztować", english: "cost cost cost" },
-    { german: "ciąć", english: "cut cut cut" },
-    { german: "robić", english: "do did done" },
-    { german: "rysować", english: "draw drew drawn" },
-    { german: "śnić, marzyć", english: "dream dreamt/dreamed dreamt/dreamed" },
-    { german: "pić", english: "drink drank drunk" },
-    { german: "prowadzić samochód", english: "drive drove driven" },
-    { german: "jeść", english: "eat ate eaten" },
-    { german: "upadać", english: "fall fell fallen" },
-    { german: "karmić", english: "feed fed fed" },
-    { german: "czuć (się)", english: "feel felt felt" },
-    { german: "znajdować", english: "find found found" },
-    { german: "latać", english: "fly flew flown" },
-    { german: "zapominać", english: "forget forgot forgotten" },
-    { german: "dostawać", english: "get got got" },
-    { german: "dawać", english: "give gave given" },
-    { german: "iść, jechać", english: "go went gone" },
-    { german: "rosnąć, sadzić", english: "grow grew grown" },
-    { german: "wisieć", english: "hang hung hung" },
-    { german: "mieć", english: "have had had" },
-    { german: "słyszeć", english: "hear heard heard" },
-    { german: "(za)trzymać", english: "keep kept kept" },
-    { german: "wiedzieć, znać", english: "know knew known" },
-    { german: "uczyć się", english: "learn learnt/learned learnt/learned" },
+const historicalEvents = [
+    { event: "Columbus discovered Americas", date: "1492" },
+    { event: "Declaration of Independence", date: "1776" },
+    { event: "First man on the Moon", date: "1969" },
 ];
 
 function shuffleArray(array) {
@@ -41,7 +11,7 @@ function shuffleArray(array) {
   }
 }
 
-shuffleArray(wordsToTranslate);
+
 
 let currentWordIndex = 0;
 let correctCount = 0;
@@ -56,15 +26,15 @@ const summaryDiv = document.createElement('div');
 const okButton = document.getElementById('ok-button');
 
 function updateProgressBar() {
-  const progress = (currentWordIndex / wordsToTranslate.length) * 100;
+  const progress = (currentWordIndex / historicalEvents.length) * 100;
   progressBar.value = progress;
-  progressLabel.textContent = `To translate: ${wordsToTranslate.length - currentWordIndex}`;
+  progressLabel.textContent = `To translate: ${historicalEvents.length - currentWordIndex}`;
 }
 
 function displayNextWord() {
-  if (currentWordIndex < wordsToTranslate.length) {
+  if (currentWordIndex < historicalEvents.length) {
     wordInput.value = '';
-    const nextWord = wordsToTranslate[currentWordIndex].german;
+    const nextWord = historicalEvents[currentWordIndex].event;
     wordInput.placeholder = `${nextWord}`;
   } else {
     displaySummary();
@@ -72,28 +42,7 @@ function displayNextWord() {
 }
 
 function displaySummary() {
-  summaryDiv.innerHTML = '<h2>Words to learn:</h2>';
-  const wordCounts = {};
-
-  wordsToTranslate.forEach(word => {
-    if (wordCounts[word.german]) {
-      wordCounts[word.german]++;
-    } else {
-      wordCounts[word.german] = 1;
-    }
-  });
-
-  const sortedWords = Object.keys(wordCounts).sort((a, b) => wordCounts[b] - wordCounts[a]);
-
-  sortedWords.forEach(word => {
-    if (wordCounts[word] > 1) {
-      const attempts = wordCounts[word];
-      summaryDiv.innerHTML += `<p>${word}: ${attempts} attempts</p>`;
-    }
-  });
-
-  feedbackDiv.innerHTML = '';
-  feedbackDiv.appendChild(summaryDiv);
+  feedbackDiv.innerHTML = '<h2>Quiz Complete!</h2>';
 }
 
 function handleOkButtonClick() {
@@ -102,15 +51,14 @@ function handleOkButtonClick() {
 
 function checkTranslationLogic(){
   const userTranslation = wordInput.value.trim();
-  const currentWord = wordsToTranslate[currentWordIndex];
+  const currentWord = historicalEvents[currentWordIndex];
 
-  if (userTranslation === currentWord.english) {
-    feedbackDiv.textContent = `Very good! `;
+if (userTranslation === currentWord.date) {
+    feedbackDiv.textContent = `Correct!`;
     correctCount++;
     currentWordIndex++;
   } else {
-    feedbackDiv.textContent = `Incorrect. The correct translation of "${currentWord.german}" is "${currentWord.english}", you provided "${userTranslation}".`;  
-    wordsToTranslate.push(wordsToTranslate[currentWordIndex]);
+    feedbackDiv.textContent = `Incorrect. The correct date for "${currentWord.event}" is "${currentWord.date}". You entered "${userTranslation}".`;
   }
   updateProgressBar();
   displayNextWord();
