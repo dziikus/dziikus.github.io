@@ -110,12 +110,12 @@ function checkTranslationLogic(){
   const userTranslation = wordInput.value.trim();
   const currentWord = wordsToTranslate[currentWordIndex];
 
-  if (userTranslation === currentWord.german) {
+  if (userTranslation === currentWord.english) {
     feedbackDiv.textContent = `Very good! `;
     correctCount++;
     currentWordIndex++;
   } else {
-    feedbackDiv.textContent = `Incorrect. The correct translation of "${currentWord.german}" is "${currentWord.german}", you provided "${userTranslation}".`;  
+    feedbackDiv.textContent = `Incorrect. The correct translation of "${currentWord.english}" is "${currentWord.german}", you provided "${userTranslation}".`;
     wordsToTranslate.push(wordsToTranslate[currentWordIndex]);
   }
   updateProgressBar();
