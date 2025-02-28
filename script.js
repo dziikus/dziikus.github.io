@@ -70,7 +70,7 @@ function updateProgressBar() {
 function displayNextWord() {
   if (currentWordIndex < wordsToTranslate.length) {
     wordInput.value = '';
-    const nextWord = wordsToTranslate[currentWordIndex].german;
+    const nextWord = wordsToTranslate[currentWordIndex].english;
     wordInput.placeholder = `${nextWord}`;
   } else {
     displaySummary();
