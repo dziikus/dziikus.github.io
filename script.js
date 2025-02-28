@@ -1,43 +1,43 @@
 const wordsToTranslate = [
-{ german: "schody", english: "Treppe" },
-{ german: "wazon", english: "Vase" },
-{ german: "ściana", english: "Wand" },
-{ german: "szafa", english: "Kleiderschrank" },
-{ german: "pralka", english: "Waschmaschine" },
-{ german: "okno", english: "Fenster" },
-{ german: "balkon", english: "Balkon" },
-{ german: "łazienka", english: "Badezimmer" },
-{ german: "sypialnia", english: "Schlafzimmer" },
-{ german: "przedpokój, korytarz", english: "Flur" },
-{ german: "kuchnia", english: "Küche" },
-{ german: "pokój dzienny", english: "Wohnzimmer" },
-{ german: "fotel", english: "Sessel" },
-{ german: "wanna", english: "Badewanne" },
-{ german: "kosz na śmieci", english: "Mülleimer" },
-{ german: "biblioteczka", english: "Bücherregal" },
-{ german: "dywan", english: "Teppich" },
-{ german: "sufit", english: "Decke" },
-{ german: "komin", english: "Kamin" },
-{ german: "kuchenka", english: "Herd" },
-{ german: "szafka", english: "Schrank" },
-{ german: "poduszka dekoracyjna", english: "Kissen" },
-{ german: "drzwi", english: "Tür" },
-{ german: "podłoga, piętro", english: "Boden, Stockwerk" },
-{ german: "lodówka", english: "Kühlschrank" },
-{ german: "lampa", english: "Lampe" },
-{ german: "lustro", english: "Spiegel" },
-{ german: "dach", english: "Dach" },
-{ german: "prysznic", english: "Dusche" },
-{ german: "zlew kuchenny", english: "Spüle" },
-{ german: "kawiarnia", english: "Café" },
-{ german: "wygodny", english: "bequem" },
-{ german: "latawiec", english: "Drachen" },
-{ german: "latarnia morska", english: "Leuchtturm" },
-{ german: "pałac", english: "Palast" },
-{ german: "śmieci", english: "Müll" },
-{ german: "dom na drzewie", english: "Baumhaus" },
-{ german: "parasol", english: "Regenschirm" },
-{ german: "zabalaganiony", english: "unordentlich" }
+{ english: "schody", german: "stairs" },
+{ english: "wazon", german: "vase" },
+{ english: "ściana", german: "wall" },
+{ english: "szafa", german: "wardrobe" },
+{ english: "pralka", german: "washing machine" },
+{ english: "okno", german: "window" },
+{ english: "balkon", german: "balcony" },
+{ english: "łazienka", german: "bathroom" },
+{ english: "sypialnia", german: "bedroom" },
+{ english: "przedpokój, korytarz", german: "hall" },
+{ english: "kuchnia", german: "kitchen" },
+{ english: "pokój dzienny", german: "living room" },
+{ english: "fotel", german: "armchair" },
+{ english: "wanna", german: "bath" },
+{ english: "kosz na śmieci", german: "bin" },
+{ english: "biblioteczka", german: "bookcase" },
+{ english: "dywan", german: "carpet" },
+{ english: "sufit", german: "ceiling" },
+{ english: "komin", german: "chimney" },
+{ english: "kuchenka", german: "cooker" },
+{ english: "szafka", german: "cupboard" },
+{ english: "poduszka dekoracyjna", german: "cushion" },
+{ english: "drzwi", german: "door" },
+{ english: "podłoga, piętro", german: "floor" },
+{ english: "lodówka", german: "fridge" },
+{ english: "lampa", german: "lamp" },
+{ english: "lustro", german: "mirror" },
+{ english: "dach", german: "roof" },
+{ english: "prysznic", german: "shower" },
+{ english: "zlew kuchenny", german: "sink" },
+{ english: "kawiarnia", german: "café" },
+{ english: "wygodny", german: "comfortable" },
+{ english: "latawiec", german: "kite" },
+{ english: "latarnia morska", german: "lighthouse" },
+{ english: "pałac", german: "palace" },
+{ english: "śmieci", german: "rubbish" },
+{ english: "dom na drzewie", german: "tree house" },
+{ english: "parasol", german: "umbrella" },
+{ english: "zabalaganiony", german: "untidy" }
 ];
 
 function shuffleArray(array) {
@@ -70,7 +70,7 @@ function updateProgressBar() {
 function displayNextWord() {
   if (currentWordIndex < wordsToTranslate.length) {
     wordInput.value = '';
-    const nextWord = wordsToTranslate[currentWordIndex].english;
+    const nextWord = wordsToTranslate[currentWordIndex].german;
     wordInput.placeholder = `${nextWord}`;
   } else {
     displaySummary();
@@ -82,10 +82,10 @@ function displaySummary() {
   const wordCounts = {};
 
   wordsToTranslate.forEach(word => {
-    if (wordCounts[word.english]) {
-      wordCounts[word.english]++;
+    if (wordCounts[word.german]) {
+      wordCounts[word.german]++;
     } else {
-      wordCounts[word.english] = 1;
+      wordCounts[word.german] = 1;
     }
   });
 
@@ -110,12 +110,12 @@ function checkTranslationLogic(){
   const userTranslation = wordInput.value.trim();
   const currentWord = wordsToTranslate[currentWordIndex];
 
-  if (userTranslation === currentWord.english) {
+  if (userTranslation === currentWord.german) {
     feedbackDiv.textContent = `Very good! `;
     correctCount++;
     currentWordIndex++;
   } else {
-    feedbackDiv.textContent = `Incorrect. The correct translation of "${currentWord.english}" is "${currentWord.english}", you provided "${userTranslation}".`;  
+    feedbackDiv.textContent = `Incorrect. The correct translation of "${currentWord.german}" is "${currentWord.german}", you provided "${userTranslation}".`;  
     wordsToTranslate.push(wordsToTranslate[currentWordIndex]);
   }
   updateProgressBar();
