@@ -1,29 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
-  <title>Polish History Quiz - Kazimierz Wielki</title>
+  <title>Quiz Historyczny - Kazimierz Wielki</title>
 </head>
 <body>
   <div id="api-key-modal" class="modal">
     <div class="modal-content">
-      <h2>Welcome to Polish History Quiz!</h2>
-      <p>To use this application, you need a Google Gemini API key. Your key will be stored locally and used only for answer evaluation.</p>
+      <h2>Witaj w Quizie Historycznym!</h2>
+      <p>Aby korzystać z aplikacji, potrzebujesz klucza API Google Gemini. Twój klucz będzie przechowywany lokalnie i używany tylko do oceny odpowiedzi.</p>
       <div class="api-key-input">
-        <input type="password" id="api-key-input" placeholder="Enter your Gemini API key">
-        <button id="save-api-key">Start Quiz</button>
+        <input type="password" id="api-key-input" placeholder="Wprowadź klucz API Gemini">
+        <button id="save-api-key">Rozpocznij Quiz</button>
       </div>
       <div class="api-key-help">
-        <p>Don't have an API key? <a href="https://makersuite.google.com/app/apikey" target="_blank">Get one here</a></p>
+        <p>Nie masz klucza API? <a href="https://makersuite.google.com/app/apikey" target="_blank">Uzyskaj go tutaj</a></p>
         <p class="api-key-error" id="api-key-error"></p>
       </div>
     </div>
   </div>
 
   <div class="container">
-    <h1>Polish History Quiz: Kazimierz Wielki</h1>
+    <h1>Quiz Historyczny: Kazimierz Wielki</h1>
     <div class="progress-container">
       <progress id="progress-bar" value="0" max="100"></progress>
       <span id="progress-label">0%</span>
@@ -32,8 +32,8 @@
     <div class="question-container">
       <h2 id="current-question"></h2>
       <form id="translation-form">
-        <textarea id="word-input" placeholder="Type your answer here..." rows="4"></textarea>
-        <button type="button" id="ok-button">Submit Answer</button>
+        <textarea id="word-input" placeholder="Wpisz swoją odpowiedź tutaj..." rows="4"></textarea>
+        <button type="button" id="ok-button">Zatwierdź Odpowiedź</button>
       </form>
     </div>
     

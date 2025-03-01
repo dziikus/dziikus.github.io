@@ -1,19 +1,19 @@
 const historyQuestions = [
     { 
-        question: "What major educational achievement is Kazimierz Wielki known for?",
-        modelAnswer: "Kazimierz Wielki founded the Kraków Academy (now Jagiellonian University) in 1364, which was the first university in Poland and one of the oldest in Central Europe."
+        question: "Jakie wielkie osiągnięcie edukacyjne jest związane z Kazimierzem Wielkim?",
+        modelAnswer: "Kazimierz Wielki założył Akademię Krakowską (obecnie Uniwersytet Jagielloński) w 1364 roku, która była pierwszym uniwersytetem w Polsce i jednym z najstarszych w Europie Środkowej."
     },
     {
-        question: "How did Kazimierz Wielki earn his nickname 'the Great'?",
-        modelAnswer: "Kazimierz Wielki earned his nickname 'the Great' by transforming Poland from a wooden kingdom into one of stone, modernizing the country's infrastructure, strengthening its economy, and implementing significant legal and administrative reforms."
+        question: "W jaki sposób Kazimierz zasłużył na przydomek 'Wielki'?",
+        modelAnswer: "Kazimierz zasłużył na przydomek 'Wielki' przekształcając Polskę z królestwa drewnianego w murowane, modernizując infrastrukturę kraju, wzmacniając gospodarkę oraz wprowadzając znaczące reformy prawne i administracyjne."
     },
     {
-        question: "What was Kazimierz Wielki's most significant contribution to Poland's legal system?",
-        modelAnswer: "He introduced the Statute of Wiślica, which unified and codified Polish law, establishing a more organized legal system and improving the administration of justice throughout the kingdom."
+        question: "Jaki był najważniejszy wkład Kazimierza Wielkiego w polski system prawny?",
+        modelAnswer: "Wprowadził Statut Wiślicki, który ujednolicił i skodyfikował prawo polskie, ustanawiając bardziej zorganizowany system prawny i usprawniając wymiar sprawiedliwości w całym królestwie."
     },
     {
-        question: "How did Kazimierz Wielki improve Poland's defense system?",
-        modelAnswer: "He built numerous castles and fortifications across Poland, creating a chain of defensive structures known as Eagles' Nests, and strengthened city walls to protect against invasions."
+        question: "Jak Kazimierz Wielki usprawnił system obronny Polski?",
+        modelAnswer: "Wybudował liczne zamki i fortyfikacje w całej Polsce, tworząc łańcuch konstrukcji obronnych znanych jako Orle Gniazda, oraz wzmocnił mury miejskie dla ochrony przed najazdami."
     }
 ];
 
@@ -97,36 +97,36 @@ async function evaluateAnswer(userAnswer, modelAnswer, question) {
     if (!apiKey) {
         return {
             score: 0,
-            correctPoints: "Error: API key is required for evaluation.",
-            improvementPoints: "Please provide a valid Gemini API key",
-            suggestion: "Refresh the page and enter your API key"
+            correctPoints: "Błąd: Wymagany jest klucz API do oceny.",
+            improvementPoints: "Proszę podać prawidłowy klucz API Gemini",
+            suggestion: "Odśwież stronę i wprowadź swój klucz API"
         };
     }
 
-    const prompt = `You are a history teacher evaluating a student's answer about Kazimierz Wielki (Casimir the Great), a Polish king.
+    const prompt = `Jesteś nauczycielem historii oceniającym odpowiedź ucznia na temat Kazimierza Wielkiego, króla Polski.
 
-Question: ${question}
-Model Answer: ${modelAnswer}
-Student's Answer: ${userAnswer}
+Pytanie: ${question}
+Wzorcowa odpowiedź: ${modelAnswer}
+Odpowiedź ucznia: ${userAnswer}
 
-Please evaluate the answer and provide:
-1. A score from 0-5 (where 5 is perfect)
-2. Detailed feedback about what was correct
-3. Specific points that were missing or could be improved
-4. A brief suggestion for better answering
+Proszę ocenić odpowiedź i podać:
+1. Ocenę od 0 do 5 (gdzie 5 to ocena doskonała)
+2. Szczegółową informację o tym, co było poprawne
+3. Konkretne punkty, których brakowało lub które można poprawić
+4. Krótką sugestię, jak lepiej odpowiedzieć
 
-Format your response EXACTLY as a JSON object with these fields:
+Odpowiedź ma być dokładnie w formacie JSON:
 {
-    "score": number,
-    "correctPoints": "what the student got right",
-    "improvementPoints": "what could be improved",
-    "suggestion": "brief suggestion for improvement"
+    "score": liczba,
+    "correctPoints": "co uczeń zrobił dobrze",
+    "improvementPoints": "co można poprawić",
+    "suggestion": "krótka sugestia"
 }
 
-IMPORTANT: Respond ONLY with the JSON object, no other text.`;
+WAŻNE: Odpowiedz TYLKO obiektem JSON, bez żadnego dodatkowego tekstu.`;
 
     try {
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -151,9 +151,7 @@ IMPORTANT: Respond ONLY with the JSON object, no other text.`;
             throw new Error(data.error.message);
         }
 
-        // Extract the response text from Gemini's response structure
         const responseText = data.candidates[0].content.parts[0].text;
-        // Parse the JSON response, removing any potential markdown formatting
         const cleanJson = responseText.replace(/```json\n?|\n?```/g, '').trim();
         const result = JSON.parse(cleanJson);
         return result;
@@ -162,9 +160,9 @@ IMPORTANT: Respond ONLY with the JSON object, no other text.`;
         console.error('Error:', error);
         return {
             score: 0,
-            correctPoints: "Error evaluating answer",
-            improvementPoints: "There was an error processing your answer with Gemini API",
-            suggestion: "Please try again or check your API key"
+            correctPoints: "Błąd w ocenie odpowiedzi",
+            improvementPoints: "Wystąpił problem podczas przetwarzania odpowiedzi",
+            suggestion: "Proszę spróbować ponownie lub sprawdzić klucz API"
         };
     }
 }
@@ -173,11 +171,10 @@ async function checkAnswerLogic() {
     const userAnswer = wordInput.value.trim();
     const currentQuestion = historyQuestions[currentQuestionIndex];
     
-    // Disable the submit button and show loading state
     const submitButton = document.getElementById('ok-button');
     const originalButtonText = submitButton.textContent;
     submitButton.disabled = true;
-    submitButton.textContent = 'Evaluating...';
+    submitButton.textContent = 'Ocenianie...';
 
     try {
         const evaluation = await evaluateAnswer(
@@ -188,21 +185,21 @@ async function checkAnswerLogic() {
 
         feedbackDiv.innerHTML = `
             <div class="evaluation-result">
-                <h3>Score: ${evaluation.score}/5</h3>
+                <h3>Ocena: ${evaluation.score}/5</h3>
                 <div class="feedback-section correct">
-                    <h4>What You Got Right:</h4>
+                    <h4>Co było dobrze:</h4>
                     <p>${evaluation.correctPoints}</p>
                 </div>
                 <div class="feedback-section improvements">
-                    <h4>Areas for Improvement:</h4>
+                    <h4>Co można poprawić:</h4>
                     <p>${evaluation.improvementPoints}</p>
                 </div>
                 <div class="feedback-section suggestion">
-                    <h4>Suggestion:</h4>
+                    <h4>Sugestia:</h4>
                     <p>${evaluation.suggestion}</p>
                 </div>
                 <div class="model-answer">
-                    <h4>Model Answer:</h4>
+                    <h4>Wzorcowa odpowiedź:</h4>
                     <p>${currentQuestion.modelAnswer}</p>
                 </div>
             </div>
@@ -222,11 +219,10 @@ async function checkAnswerLogic() {
         console.error('Error:', error);
         feedbackDiv.innerHTML = `
             <div class="error">
-                <p>Error evaluating answer. Please check your API key and try again.</p>
+                <p>Błąd w ocenie odpowiedzi. Sprawdź swój klucz API i spróbuj ponownie.</p>
             </div>
         `;
     } finally {
-        // Re-enable the submit button and restore original text
         submitButton.disabled = false;
         submitButton.textContent = originalButtonText;
     }
@@ -235,7 +231,7 @@ async function checkAnswerLogic() {
 function updateProgressBar() {
     const progress = (currentQuestionIndex / historyQuestions.length) * 100;
     progressBar.value = progress;
-    progressLabel.textContent = `Questions remaining: ${historyQuestions.length - currentQuestionIndex}`;
+    progressLabel.textContent = `Pozostałe pytania: ${historyQuestions.length - currentQuestionIndex}`;
 }
 
 function displayNextQuestion() {
@@ -266,28 +262,28 @@ const summaryDiv = document.createElement('div');
 const okButton = document.getElementById('ok-button');
 
 function displaySummary() {
-  summaryDiv.innerHTML = '<h2>Questions answered:</h2>';
-  const wordCounts = {};
+    summaryDiv.innerHTML = '<h2>Podsumowanie odpowiedzi:</h2>';
+    const wordCounts = {};
 
-  historyQuestions.forEach(question => {
-    if (wordCounts[question.modelAnswer]) {
-      wordCounts[question.modelAnswer]++;
-    } else {
-      wordCounts[question.modelAnswer] = 1;
-    }
-  });
+    historyQuestions.forEach(question => {
+        if (wordCounts[question.modelAnswer]) {
+            wordCounts[question.modelAnswer]++;
+        } else {
+            wordCounts[question.modelAnswer] = 1;
+        }
+    });
 
-  const sortedWords = Object.keys(wordCounts).sort((a, b) => wordCounts[b] - wordCounts[a]);
+    const sortedWords = Object.keys(wordCounts).sort((a, b) => wordCounts[b] - wordCounts[a]);
 
-  sortedWords.forEach(word => {
-    if (wordCounts[word] > 1) {
-      const attempts = wordCounts[word];
-      summaryDiv.innerHTML += `<p>${word}: ${attempts} attempts</p>`;
-    }
-  });
+    sortedWords.forEach(word => {
+        if (wordCounts[word] > 1) {
+            const attempts = wordCounts[word];
+            summaryDiv.innerHTML += `<p>${word}: ${attempts} prób</p>`;
+        }
+    });
 
-  feedbackDiv.innerHTML = '';
-  feedbackDiv.appendChild(summaryDiv);
+    feedbackDiv.innerHTML = '';
+    feedbackDiv.appendChild(summaryDiv);
 }
 
 okButton.addEventListener('click', handleOkButtonClick);
