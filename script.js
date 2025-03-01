@@ -21,21 +21,138 @@ let currentQuestionIndex = 0;
 let correctCount = 0;
 let attemptCount = 0;
 
-// Function to calculate similarity between two strings
-function calculateSimilarity(str1, str2) {
-    str1 = str1.toLowerCase();
-    str2 = str2.toLowerCase();
+async function evaluateAnswer(userAnswer, modelAnswer, question) {
+    const apiKey = localStorage.getItem('openai_api_key');
+    if (!apiKey) {
+        const key = prompt("Please enter your OpenAI API key (it will be stored locally):");
+        if (key) {
+            localStorage.setItem('openai_api_key', key);
+        } else {
+            return {
+                score: 0,
+                feedback: "Error: API key is required for evaluation."
+            };
+        }
+    }
+
+    const prompt = `
+You are a history teacher evaluating a student's answer about Kazimierz Wielki (Casimir the Great), a Polish king.
+
+Question: ${question}
+Model Answer: ${modelAnswer}
+Student's Answer: ${userAnswer}
+
+Please evaluate the answer and provide:
+1. A score from 0-5 (where 5 is perfect)
+2. Detailed feedback about what was correct
+3. Specific points that were missing or could be improved
+4. A brief suggestion for better answering
+
+Format your response as JSON:
+{
+    "score": number,
+    "correctPoints": "what the student got right",
+    "improvementPoints": "what could be improved",
+    "suggestion": "brief suggestion for improvement"
+}`;
+
+    try {
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`
+            },
+            body: JSON.stringify({
+                model: "gpt-3.5-turbo",
+                messages: [{
+                    role: "user",
+                    content: prompt
+                }],
+                temperature: 0.7
+            })
+        });
+
+        const data = await response.json();
+        if (data.error) {
+            throw new Error(data.error.message);
+        }
+
+        const result = JSON.parse(data.choices[0].message.content);
+        return result;
+
+    } catch (error) {
+        console.error('Error:', error);
+        return {
+            score: 0,
+            correctPoints: "Error evaluating answer",
+            improvementPoints: "Please try again or check your API key",
+            suggestion: "Ensure you have a valid OpenAI API key"
+        };
+    }
+}
+
+async function checkAnswerLogic() {
+    const userAnswer = wordInput.value.trim();
+    const currentQuestion = historyQuestions[currentQuestionIndex];
     
-    // Split into words and remove common words
-    const words1 = str1.split(/\s+/).filter(word => word.length > 3);
-    const words2 = str2.split(/\s+/).filter(word => word.length > 3);
-    
-    // Count matching words
-    const matches = words1.filter(word => words2.includes(word));
-    
-    // Calculate similarity score
-    const similarity = (matches.length * 2) / (words1.length + words2.length);
-    return similarity;
+    // Disable the submit button and show loading state
+    const submitButton = document.getElementById('ok-button');
+    const originalButtonText = submitButton.textContent;
+    submitButton.disabled = true;
+    submitButton.textContent = 'Evaluating...';
+
+    try {
+        const evaluation = await evaluateAnswer(
+            userAnswer,
+            currentQuestion.modelAnswer,
+            currentQuestion.question
+        );
+
+        feedbackDiv.innerHTML = `
+            <div class="evaluation-result">
+                <h3>Score: ${evaluation.score}/5</h3>
+                <div class="feedback-section correct">
+                    <h4>What You Got Right:</h4>
+                    <p>${evaluation.correctPoints}</p>
+                </div>
+                <div class="feedback-section improvements">
+                    <h4>Areas for Improvement:</h4>
+                    <p>${evaluation.improvementPoints}</p>
+                </div>
+                <div class="feedback-section suggestion">
+                    <h4>Suggestion:</h4>
+                    <p>${evaluation.suggestion}</p>
+                </div>
+                <div class="model-answer">
+                    <h4>Model Answer:</h4>
+                    <p>${currentQuestion.modelAnswer}</p>
+                </div>
+            </div>
+        `;
+
+        if (evaluation.score >= 3) {
+            correctCount++;
+            currentQuestionIndex++;
+        } else {
+            historyQuestions.push(historyQuestions[currentQuestionIndex]);
+        }
+
+        updateProgressBar();
+        displayNextQuestion();
+
+    } catch (error) {
+        console.error('Error:', error);
+        feedbackDiv.innerHTML = `
+            <div class="error">
+                <p>Error evaluating answer. Please check your API key and try again.</p>
+            </div>
+        `;
+    } finally {
+        // Re-enable the submit button and restore original text
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+    }
 }
 
 function updateProgressBar() {
@@ -53,30 +170,6 @@ function displayNextQuestion() {
     } else {
         displaySummary();
     }
-}
-
-function checkAnswerLogic() {
-    const userAnswer = wordInput.value.trim();
-    const currentQuestion = historyQuestions[currentQuestionIndex];
-    const similarity = calculateSimilarity(userAnswer, currentQuestion.modelAnswer);
-    
-    if (similarity >= 0.3) {  // Threshold for acceptable answer
-        feedbackDiv.innerHTML = `
-            <p class="correct">Good answer! Your response shows understanding of the topic.</p>
-            <p class="model-answer">Model answer: ${currentQuestion.modelAnswer}</p>
-        `;
-        correctCount++;
-        currentQuestionIndex++;
-    } else {
-        feedbackDiv.innerHTML = `
-            <p class="incorrect">Your answer could be improved. Here's why:</p>
-            <p class="model-answer">Model answer: ${currentQuestion.modelAnswer}</p>
-            <p>Try to include more specific details in your answer.</p>
-        `;
-        historyQuestions.push(historyQuestions[currentQuestionIndex]);
-    }
-    updateProgressBar();
-    displayNextQuestion();
 }
 
 function handleOkButtonClick() {
