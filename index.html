@@ -7,6 +7,21 @@
   <title>Polish History Quiz - Kazimierz Wielki</title>
 </head>
 <body>
+  <div id="api-key-modal" class="modal">
+    <div class="modal-content">
+      <h2>Welcome to Polish History Quiz!</h2>
+      <p>To use this application, you need an OpenAI API key. Your key will be stored locally and used only for answer evaluation.</p>
+      <div class="api-key-input">
+        <input type="password" id="api-key-input" placeholder="Enter your OpenAI API key">
+        <button id="save-api-key">Start Quiz</button>
+      </div>
+      <div class="api-key-help">
+        <p>Don't have an API key? <a href="https://platform.openai.com/api-keys" target="_blank">Get one here</a></p>
+        <p class="api-key-error" id="api-key-error"></p>
+      </div>
+    </div>
+  </div>
+
   <div class="container">
     <h1>Polish History Quiz: Kazimierz Wielki</h1>
     <div class="progress-container">

@@ -21,6 +21,79 @@ let currentQuestionIndex = 0;
 let correctCount = 0;
 let attemptCount = 0;
 
+async function validateApiKey(apiKey) {
+    try {
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`
+            },
+            body: JSON.stringify({
+                model: "gpt-3.5-turbo",
+                messages: [{
+                    role: "user",
+                    content: "Test message to validate API key."
+                }],
+                temperature: 0.7
+            })
+        });
+
+        const data = await response.json();
+        return !data.error;
+    } catch (error) {
+        return false;
+    }
+}
+
+async function handleApiKeySubmit() {
+    const apiKeyInput = document.getElementById('api-key-input');
+    const apiKeyError = document.getElementById('api-key-error');
+    const saveButton = document.getElementById('save-api-key');
+    const modal = document.getElementById('api-key-modal');
+    
+    const apiKey = apiKeyInput.value.trim();
+    
+    if (!apiKey) {
+        apiKeyError.textContent = 'Please enter an API key';
+        return;
+    }
+
+    saveButton.disabled = true;
+    saveButton.textContent = 'Validating...';
+    apiKeyError.textContent = '';
+
+    const isValid = await validateApiKey(apiKey);
+
+    if (isValid) {
+        localStorage.setItem('openai_api_key', apiKey);
+        modal.classList.add('hidden');
+        initializeQuiz();
+    } else {
+        apiKeyError.textContent = 'Invalid API key. Please check and try again.';
+        saveButton.disabled = false;
+        saveButton.textContent = 'Start Quiz';
+    }
+}
+
+function checkApiKeyAndInitialize() {
+    const apiKey = localStorage.getItem('openai_api_key');
+    const modal = document.getElementById('api-key-modal');
+
+    if (apiKey) {
+        modal.classList.add('hidden');
+        initializeQuiz();
+    } else {
+        modal.classList.remove('hidden');
+        document.getElementById('save-api-key').addEventListener('click', handleApiKeySubmit);
+    }
+}
+
+function initializeQuiz() {
+    updateProgressBar();
+    displayNextQuestion();
+}
+
 async function evaluateAnswer(userAnswer, modelAnswer, question) {
     const apiKey = localStorage.getItem('openai_api_key');
     if (!apiKey) {
@@ -216,5 +289,4 @@ function displaySummary() {
 okButton.addEventListener('click', handleOkButtonClick);
 document.getElementById('translation-form').addEventListener('submit', checkAnswer);
 
-updateProgressBar();
-displayNextQuestion();
+document.addEventListener('DOMContentLoaded', checkApiKeyAndInitialize);
