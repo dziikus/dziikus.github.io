@@ -23,19 +23,17 @@ let attemptCount = 0;
 
 async function validateApiKey(apiKey) {
     try {
-        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiKey}`
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                model: "gpt-3.5-turbo",
-                messages: [{
-                    role: "user",
-                    content: "Test message to validate API key."
-                }],
-                temperature: 0.7
+                contents: [{
+                    parts: [{
+                        text: "Test message to validate API key."
+                    }]
+                }]
             })
         });
 
@@ -66,7 +64,7 @@ async function handleApiKeySubmit() {
     const isValid = await validateApiKey(apiKey);
 
     if (isValid) {
-        localStorage.setItem('openai_api_key', apiKey);
+        localStorage.setItem('gemini_api_key', apiKey);
         modal.classList.add('hidden');
         initializeQuiz();
     } else {
@@ -77,7 +75,7 @@ async function handleApiKeySubmit() {
 }
 
 function checkApiKeyAndInitialize() {
-    const apiKey = localStorage.getItem('openai_api_key');
+    const apiKey = localStorage.getItem('gemini_api_key');
     const modal = document.getElementById('api-key-modal');
 
     if (apiKey) {
@@ -95,21 +93,17 @@ function initializeQuiz() {
 }
 
 async function evaluateAnswer(userAnswer, modelAnswer, question) {
-    const apiKey = localStorage.getItem('openai_api_key');
+    const apiKey = localStorage.getItem('gemini_api_key');
     if (!apiKey) {
-        const key = prompt("Please enter your OpenAI API key (it will be stored locally):");
-        if (key) {
-            localStorage.setItem('openai_api_key', key);
-        } else {
-            return {
-                score: 0,
-                feedback: "Error: API key is required for evaluation."
-            };
-        }
+        return {
+            score: 0,
+            correctPoints: "Error: API key is required for evaluation.",
+            improvementPoints: "Please provide a valid Gemini API key",
+            suggestion: "Refresh the page and enter your API key"
+        };
     }
 
-    const prompt = `
-You are a history teacher evaluating a student's answer about Kazimierz Wielki (Casimir the Great), a Polish king.
+    const prompt = `You are a history teacher evaluating a student's answer about Kazimierz Wielki (Casimir the Great), a Polish king.
 
 Question: ${question}
 Model Answer: ${modelAnswer}
@@ -121,28 +115,34 @@ Please evaluate the answer and provide:
 3. Specific points that were missing or could be improved
 4. A brief suggestion for better answering
 
-Format your response as JSON:
+Format your response EXACTLY as a JSON object with these fields:
 {
     "score": number,
     "correctPoints": "what the student got right",
     "improvementPoints": "what could be improved",
     "suggestion": "brief suggestion for improvement"
-}`;
+}
+
+IMPORTANT: Respond ONLY with the JSON object, no other text.`;
 
     try {
-        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiKey}`
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                model: "gpt-3.5-turbo",
-                messages: [{
-                    role: "user",
-                    content: prompt
+                contents: [{
+                    parts: [{
+                        text: prompt
+                    }]
                 }],
-                temperature: 0.7
+                generationConfig: {
+                    temperature: 0.7,
+                    topK: 40,
+                    topP: 0.95,
+                    maxOutputTokens: 1024,
+                }
             })
         });
 
@@ -151,7 +151,11 @@ Format your response as JSON:
             throw new Error(data.error.message);
         }
 
-        const result = JSON.parse(data.choices[0].message.content);
+        // Extract the response text from Gemini's response structure
+        const responseText = data.candidates[0].content.parts[0].text;
+        // Parse the JSON response, removing any potential markdown formatting
+        const cleanJson = responseText.replace(/```json\n?|\n?```/g, '').trim();
+        const result = JSON.parse(cleanJson);
         return result;
 
     } catch (error) {
@@ -159,8 +163,8 @@ Format your response as JSON:
         return {
             score: 0,
             correctPoints: "Error evaluating answer",
-            improvementPoints: "Please try again or check your API key",
-            suggestion: "Ensure you have a valid OpenAI API key"
+            improvementPoints: "There was an error processing your answer with Gemini API",
+            suggestion: "Please try again or check your API key"
         };
     }
 }
@@ -289,4 +293,20 @@ function displaySummary() {
 okButton.addEventListener('click', handleOkButtonClick);
 document.getElementById('translation-form').addEventListener('submit', checkAnswer);
 
-document.addEventListener('DOMContentLoaded', checkApiKeyAndInitialize);
+document.addEventListener('DOMContentLoaded', () => {
+    // Update modal text for Gemini
+    const modalText = document.querySelector('.modal-content p');
+    modalText.textContent = 'To use this application, you need a Google Gemini API key. Your key will be stored locally and used only for answer evaluation.';
+
+    // Update API key input placeholder
+    const apiKeyInput = document.getElementById('api-key-input');
+    apiKeyInput.placeholder = 'Enter your Gemini API key';
+
+    // Update help link
+    const helpLink = document.querySelector('.api-key-help a');
+    helpLink.href = 'https://makersuite.google.com/app/apikey';
+    helpLink.textContent = 'Get one here';
+
+    // Initialize the quiz
+    checkApiKeyAndInitialize();
+});
