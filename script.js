@@ -153,7 +153,7 @@ Odpowiedź ma być dokładnie w formacie JSON:
 {
     "score": liczba,
     "correctPoints": "co uczeń zrobił dobrze",
-    "improvementPoints": "co można poprawić",
+    "improvementPoints": "co konkretnie trzeba poprawić w odpowiedzi zeby dostac 5/5",
     "suggestion": "krótka sugestia"
 }
 
@@ -225,30 +225,26 @@ async function checkAnswerLogic() {
                     <p>${evaluation.correctPoints}</p>
                 </div>
                 <div class="feedback-section improvements">
-                    <h4>Co można poprawić:</h4>
+                    <h4>Co poprawić, aby uzyskać 5/5:</h4>
                     <p>${evaluation.improvementPoints}</p>
-                </div>
-                <div class="feedback-section suggestion">
-                    <h4>Sugestia:</h4>
-                    <p>${evaluation.suggestion}</p>
                 </div>
                 <div class="model-answer">
                     <h4>Wzorcowa odpowiedź:</h4>
                     <p>${currentQuestion.modelAnswer}</p>
                     ${evaluation.score < 5 ? `
-                        <button onclick="speakText('${currentQuestion.modelAnswer.replace(/'/g, "\\'")}')" class="speak-button">
-                            <span class="speak-icon">🔊</span> Powtórz odpowiedź
+                        <button onclick="speakText('${evaluation.improvementPoints.replace(/'/g, "\\'")}')" class="speak-button">
+                            <span class="speak-icon">🔊</span> Powtórz sugestie
                         </button>
                     ` : ''}
                 </div>
             </div>
         `;
 
-        // Automatically speak the correct answer if score is not perfect
+        // Automatically speak the improvement suggestions if score is not perfect
         if (evaluation.score < 5) {
             // Small delay to let the user see the feedback first
             setTimeout(() => {
-                speakText(currentQuestion.modelAnswer);
+                speakText(evaluation.improvementPoints);
             }, 1000);
         }
 
