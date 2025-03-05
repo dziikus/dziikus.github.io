@@ -250,3 +250,26 @@ button:disabled {
     display: none !important;
 }
 
+.speak-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+
+.speak-button:hover {
+    background-color: #2980b9;
+}
+
+.speak-icon {
+    font-size: 1.1rem;
+}
+

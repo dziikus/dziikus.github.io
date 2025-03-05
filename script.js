@@ -1,89 +1,59 @@
 const historyQuestions = [
     {
-        "question": "Opisz, jak hetman Jan Zamoyski wpłynął na politykę zagraniczną Rzeczpospolitej pod rządami Stefana Batorego.",
-        "modelAnswer": "Hetman **Jan Zamoyski** był bliskim współpracownikiem króla **Stefana Batorego** i dowódcą wojskowym [1]. Jego strategiczne umiejętności i determinacja w działaniach wojennych miały kluczowe znaczenie dla sukcesów Rzeczpospolitej. Dzięki jego zaangażowaniu i dowództwu, Rzeczpospolita odzyskała Inflanty, co umocniło jej pozycję w regionie Bałtyku i zapewniło kontrolę nad ważnymi szlakami handlowymi [1, 2]."
-    },
-    {
-        "question": "Wyjaśnij, dlaczego Zygmunt III Waza został królem Polski po śmierci Stefana Batorego i jakie były jego główne cele polityczne.",
-        "modelAnswer": "Po śmierci **Stefana Batorego**, **Zygmunt III Waza** objął tron Polski [1]. Jego wybór był wynikiem skomplikowanej sytuacji politycznej w Rzeczpospolitej, gdzie różne frakcje szlacheckie miały swoje preferencje. **Zygmunt III Waza** dążył do wzmocnienia władzy królewskiej i centralizacji państwa, co często prowadziło do konfliktów z szlachtą [3]."
-    },
-    {
-        "question": "Co to była dymitriada i jakie były jej przyczyny, przebieg oraz skutki dla Rzeczpospolitej i Rosji?",
-        "modelAnswer": "**Dymitriada** to zbrojna interwencja części polskiej szlachty w Rosji na początku XVII wieku [2]. Przyczyną były wewnętrzne problemy Rosji, osłabienie władzy carskiej i pretensje różnych pretendentów do tronu. Polska szlachta, widząc okazję do wzmocnienia swoich wpływów, angażowała się w popieranie różnych kandydatów do carskiego tronu, co doprowadziło do interwencji zbrojnych i zamieszek. Skutkiem dymitriady było zamieszanie na tronie rosyjskim i krótkotrwałe zajęcie Moskwy przez Polaków [4]."
-    },
-    {
-        "question": "Opisz szczegółowo okoliczności hołdu Wasyla Szujskiego Zygmuntowi III Wazie w 1611 roku, wyjaśniając jego symboliczne i polityczne znaczenie.",
-        "modelAnswer": "W 1611 roku w Warszawie, **Wasyl Szujski**, car Rosji, wraz z braćmi złożył hołd królowi **Zygmuntowi III** [4]. Było to związane z polską interwencją w Rosji i osadzeniem **Władysława Wazy** na tronie carskim. **Hołd Szujskiego** był symbolicznym upokorzeniem Rosji i признанием polskiej przewagi w regionie."
-    },
-    {
-        "question": "Jakie konkretnie ziemie odzyskała Rzeczpospolita na mocy pokoju w Polanowie w 1634 roku i jakie korzyści przyniosło to państwu?",
-        "modelAnswer": "Na mocy **pokoju w Polanowie** w 1634 roku, **Rzeczpospolita odzyskała ziemię smoleńską, czernihowską i siewierską** [2, 5]. Te ziemie miały strategiczne znaczenie dla bezpieczeństwa wschodnich rubieży państwa. Ich odzyskanie umocniło pozycję Rzeczpospolitej i poprawiło jej sytuację militarną w regionie."
-    },
-    {
-        "question": "Opisz przebieg bitwy pod Kircholmem w 1605 roku, uwzględniając taktykę wojsk polskich i szwedzkich oraz jej wpływ na dalsze losy wojny polsko-szwedzkiej.",
-        "modelAnswer": "W 1605 roku wojska polsko-litewskie pod dowództwem **hetmana Jana Karola Chodkiewicza** pokonały Szwedów pod **Kircholmem** [6, 7]. Zwycięstwo to było rezultatem zastosowania doskonałej taktyki husarskiej, która przełamała szyki szwedzkiej piechoty [7]. Mimo sukcesu, bitwa nie przyniosła trwałego osłabienia Szwecji i wojna toczyła się dalej."
-    },
-    {
-        "question": "Wyjaśnij, czym było \"cło\" w Rzeczpospolitej i jakie rodzaje ceł funkcjonowały w państwie oraz jakie miały znaczenie dla jego finansów.",
-        "modelAnswer": "\"**Cło**\" to opłata nakładana na towary w związku z ich przewozem przez granicę [8]. W Rzeczpospolitej funkcjonowały różne rodzaje ceł, takie jak cła importowe, eksportowe i tranzytowe. Cła stanowiły ważne źródło dochodów dla państwa, ale ich pobór często był utrudniony ze względu na słabość administracji i korupcję."
-    },
-    {
-        "question": "Czym wsławiła się husaria w historii Rzeczpospolitej, jakie było jej uzbrojenie i taktyka walki oraz dlaczego była tak skuteczna na polach bitew?",
-        "modelAnswer": "**Husaria** wsławiła się jako symbol wspaniałych zwycięstw Rzeczpospolitej w XVII wieku [7]. Charakteryzowała się ciężkim uzbrojeniem, skrzydłami i umiejętnością szarżowania [7, 9]. Husaria była skuteczna dzięki swojej sile uderzeniowej, wysokiemu morale i doskonałemu wyszkoleniu [7]."
-    },
-    {
-        "question": "Jakie ważne zmiany wprowadził król Zygmunt III Waza w funkcjonowaniu państwa i jakie były długoterminowe konsekwencje tych decyzji?",
-        "modelAnswer": "**Zygmunt III Waza** w 1596 roku przeniósł stolicę z Krakowa do Warszawy [3]. Ta decyzja miała długoterminowe konsekwencje dla rozwoju Warszawy i jej roli jako centrum politycznego i kulturalnego państwa. Ponadto, **Zygmunt III Waza** dążył do wzmocnienia władzy królewskiej, co prowadziło do konfliktów ze szlachtą i osłabienia państwa."
-    },
-    {
-        "question": "Opisz historię i symbolikę Kolumny Zygmunta w Warszawie, wyjaśniając, dlaczego została wzniesiona i jakie przesłanie niesie dla potomnych.",
-        "modelAnswer": "**Kolumna Zygmunta** w Warszawie została wzniesiona na cześć króla **Władysława IV** [3]. Jest to jeden z najważniejszych symboli miasta, upamiętniający zasługi króla dla państwa i jego wkład w rozwój Warszawy. Kolumna jest wyrazem wdzięczności i pamięci o władcy, który dbał o rozwój kultury i sztuki."
-    },
-    {
-        "question": "Jakie były główne przyczyny wybuchu powstania Chmielnickiego na Ukrainie w 1648 roku, uwzględniając aspekty społeczne, religijne i polityczne?",
-        "modelAnswer": "Przyczyny **powstania Chmielnickiego** to: zmniejszenie rejestru Kozaków, ograniczenie przywilejów Kozaków zaporoskich, konflikty na tle religijnym [10, 11]. Kozacy dążyli do zwiększenia swoich praw i swobód, a także do ochrony swojej religii prawosławnej. Szlachta polska natomiast dążyła do ograniczenia wpływów kozackich i utrzymania swojej dominacji na Ukrainie."
-    },
-    {
-        "question": "Jakie były najważniejsze etapy i skutki powstania Chmielnickiego dla Rzeczpospolitej, uwzględniając jego wpływ na relacje polsko-kozackie i polsko-rosyjskie?",
-        "modelAnswer": "**Powstanie Chmielnickiego** doprowadziło do wielu bitew i konfliktów z Kozakami [10, 11]. W jego wyniku Ukraina została włączona do Rosji. Powstanie osłabiło Rzeczpospolitą i doprowadziło do utraty kontroli nad znaczną częścią Ukrainy [10]."
-    },
-    {
-        "question": "Wyjaśnij, czym był \"potop szwedzki\" i jakie były jego główne przyczyny, przebieg oraz długoterminowe skutki dla Rzeczpospolitej?",
-        "modelAnswer": "\"**Potop szwedzki**\" to najazd szwedzki na Rzeczpospolitą w latach 1655-1660 [12, 13]. Przyczyną była chęć opanowania Bałtyku przez Szwecję i osłabienie Rzeczpospolitej [13]. Skutki to zniszczenia, spadek liczby ludności, utrata Inflant [13]. Ważnym momentem była obrona klasztoru na **Jasnej Górze** w Częstochowie [12]."
-    },
-    {
-        "question": "Opisz rolę obrony Jasnej Góry w czasie \"potopu szwedzkiego\", wyjaśniając, dlaczego to wydarzenie miało przełomowe znaczenie dla dalszych losów wojny.",
-        "modelAnswer": "**Obrona Jasnej Góry** w 1655 roku miała przełomowe znaczenie dla przebiegu potopu szwedzkiego [12]. Klasztor, broniony przez niewielki oddział, skutecznie oparł się szwedzkiej przewadze, co podniosło morale Polaków i zachęciło ich do dalszej walki [12]. Obrona Jasnej Góry stała się symbolem oporu przeciwko szwedzkiej agresji [12]."
-    },
-    {
-        "question": "Jakie były główne postanowienia pokoju w Oliwie w 1660 roku i jakie miały one konsekwencje dla Rzeczpospolitej w kontekście jej relacji ze Szwecją i innymi sąsiadami?",
-        "modelAnswer": "**Pokój w Oliwie** w 1660 roku zakończył potop szwedzki [14]. Na jego mocy Szwecja zatrzymała większą część Inflant [6, 14]. Pokój ustabilizował sytuację w regionie Bałtyku, ale Rzeczpospolita utraciła część swoich terytoriów i wpływów [14]."
-    },
-    {
-        "question": "Jakie były główne skutki wojen prowadzonych przez Rzeczpospolitą w XVII wieku dla jej sytuacji wewnętrznej i zewnętrznej, uwzględniając aspekty demograficzne, gospodarcze i polityczne?",
-        "modelAnswer": "Wojny w XVII wieku doprowadziły do spadku liczby ludności, zubożenia państwa i osłabienia jego pozycji międzynarodowej [15]. **Rzeczpospolita** straciła wiele terytoriów i wpływów na rzecz swoich sąsiadów, co osłabiło jej pozycję w regionie. Kryzys gospodarczy i polityczny osłabił państwo i utrudnił jego funkcjonowanie [15]."
-    },
-    {
-        "question": "Z kim i dlaczego Rzeczpospolita prowadziła liczne wojny w XVII wieku, analizując przyczyny konfliktów z Rosją, Szwecją i Turcją?",
-        "modelAnswer": "**Rzeczpospolita** prowadziła liczne wojny z **Rosją, Szwecją, Turcją** [5, 6, 16]. Przyczyną były konflikty o terytoria, wpływy polityczne i handel [5, 6, 16]. **Rosja** dążyła do odzyskania ziem utraconych na rzecz Rzeczpospolitej, **Szwecja** do opanowania Bałtyku, a **Turcja** do ekspansji w Europie Środkowej."
-    },
-    {
-        "question": "Opisz przebieg bitwy pod Wiedniem w 1683 roku, uwzględniając rolę Jana III Sobieskiego i wojsk polskich w pokonaniu Turków oraz jej znaczenie dla historii Europy.",
-        "modelAnswer": "W 1683 roku wojska polskie pod dowództwem **Jana III Sobieskiego** pokonały **Turków pod Wiedniem** [17, 18]. Zwycięstwo to uratowało Europę przed ekspansją turecką [17, 18]. **Jan III Sobieski** został uznany za bohatera chrześcijaństwa, a bitwa pod Wiedniem za jedno z najważniejszych wydarzeń w historii Europy [18]."
-    },
-    {
-        "question": "Wymień główne przyczyny kryzysu Rzeczpospolitej w XVII wieku, analizując wpływ \"liberum veto\", konfliktów wewnętrznych i zewnętrznych na osłabienie państwa.",
-        "modelAnswer": "Przyczyny kryzysu Rzeczpospolitej w XVII wieku to: wojny, **liberum veto**, problemy wewnętrzne państwa [15]. **Liberum veto** paraliżowało prace sejmu i uniemożliwiało podejmowanie ważnych decyzji [15]. Konflikty wewnętrzne i zewnętrzne osłabiały państwo i utrudniały jego funkcjonowanie [15]."
-    },
-    {
-        "question": "Opisz styl barokowy w architekturze, podając przykłady budowli w Polsce i wyjaśniając, jakie cechy charakterystyczne wyróżniają ten styl od innych epok architektonicznych.",
-        "modelAnswer": "Styl barokowy charakteryzuje się bogactwem dekoracji, przepychem i monumentalnością [19-21]. Przykładem architektury barokowej w Polsce jest **kościół Sióstr Wizytek w Warszawie** [21]. Barokowe budowle charakteryzują się bogatą ornamentyką, dynamiką form i wykorzystaniem światła do tworzenia efektów iluzjonistycznych [19-21]."
-    }
+        "question": "Jakie główne konflikty zbrojne toczyła Rzeczpospolita Obojga Narodów w XVI i XVII wieku i z kim?",
+        "modelAnswer": "Rzeczpospolita w omawianym okresie była uwikłana w liczne konflikty z Rosją (m.in. wojny o Inflanty, dymitriady), ze Szwecją (wojny o Inflanty, \"Potop Szwedzki\"), z Turcją (bitwy pod Cecorą, Chocimiem, odsiecz wiedeńska) oraz z Tatarami i Kozakami (powstanie Chmielnickiego, liczne najazdy)."
+      },
+        {
+        "question": "Czym charakteryzował się \"Potop Szwedzki\" i jakie były jego skutki dla Rzeczypospolitej?",
+        "modelAnswer": "\"Potop Szwedzki\" (1655-1660) to najazd szwedzki na Rzeczpospolitą, który doprowadził do ogromnych zniszczeń, strat ludności i osłabienia państwa. Szwedzi zajęli znaczną część kraju, łupiąc i niszcząc. Przełomowym momentem była obrona Jasnej Góry. Skutkiem \"Potopu\" był kryzys demograficzny i gospodarczy, utrata terytoriów (Inflanty) oraz osłabienie pozycji międzynarodowej Rzeczypospolitej."
+      },
+        {
+        "question": "Co spowodowało wybuch powstania Chmielnickiego i jakie były jego konsekwencje dla Rzeczypospolitej?",
+        "modelAnswer": "Przyczyną powstania Chmielnickiego (1648) było niezadowolenie Kozaków z ograniczenia rejestru kozackiego, a także kwestie religijne i konflikty społeczne. Powstanie doprowadziło do oderwania od Rzeczypospolitej znacznej części Ukrainy i przyłączenia jej do Rosji (traktat w Andruszowie), co osłabiło państwo i zapoczątkowało długotrwałe konflikty z Rosją."
+      },
+        {
+        "question": "Kim byli Husarzy i jaką rolę odgrywali w wojsku Rzeczypospolitej?",
+        "modelAnswer": "Husaria była elitarną formacją ciężkiej jazdy polskiej, słynącą ze skutecznych szarż i efektownego wyglądu (skrzydła). Odgrywała kluczową rolę w wielu bitwach, przyczyniając się do zwycięstw Rzeczypospolitej w XVI i XVII wieku. Ich siła wynikała z taktyki jazdy i umiejętności dowódców."
+      },
+        {
+        "question": "Jakie zmiany terytorialne zaszły w Rzeczypospolitej w wyniku wojen z Rosją w XVI i XVII wieku?",
+        "modelAnswer": "W wyniku wojen z Rosją Rzeczpospolita zdobyła Inflanty, ale później straciła Smoleńsk, Czernihów i Siewiersk. Po powstaniu Chmielnickiego duża część Ukrainy została przyłączona do Rosji, co ostatecznie potwierdził traktat andruszowski."
+      },
+        {
+        "question": "Jakie cechy charakteryzowały sztukę barokową w Polsce i jaki był jej związek z Kościołem katolickim?",
+        "modelAnswer": "Sztuka barokowa w Polsce charakteryzowała się bogactwem dekoracji, monumentalnością, przepychem i silnym wpływem religijnym. W architekturze dominowały okazałe kościoły i pałace. Kościół katolicki był ważnym mecenasem sztuki barokowej, wykorzystując ją do wzmocnienia wiary i podkreślenia swojej potęgi."
+      },
+        {
+        "question": "Jakie były przyczyny i skutki wojen z Turcją w XVI i XVII wieku?",
+        "modelAnswer": "Przyczyny wojen z Turcją to ekspansja Imperium Osmańskiego, spory o wpływy w Mołdawii i na Podolu, a także najazdy tatarskie na ziemie Rzeczypospolitej. Skutki to zniszczenia, straty ludności i finansowe, ale także obrona przed ekspansją turecką i ochrona chrześcijańskiej Europy (odsiecz wiedeńska)."
+      },
+        {
+        "question": "Jakie czynniki przyczyniły się do kryzysu Rzeczypospolitej w XVII wieku?",
+        "modelAnswer": "Kryzys Rzeczypospolitej w XVII wieku był spowodowany licznymi wojnami (ze Szwecją, Rosją, Turcją), osłabieniem władzy królewskiej (liberum veto), kryzysem gospodarczym, problemami społecznymi (powstania kozackie) oraz wpływami obcych mocarstw. Te czynniki doprowadziły do osłabienia państwa i utraty jego pozycji na arenie międzynarodowej."
+      }
 ];
 
 let currentQuestionIndex = 0;
 let correctCount = 0;
 let attemptCount = 0;
+
+function speakText(text) {
+    // Cancel any ongoing speech
+    window.speechSynthesis.cancel();
+
+    // Create new utterance
+    const utterance = new SpeechSynthesisUtterance(text);
+    
+    // Set Polish language
+    utterance.lang = 'pl-PL';
+    
+    // Set speech rate and pitch
+    utterance.rate = 0.9;
+    utterance.pitch = 1;
+    
+    // Speak the text
+    window.speechSynthesis.speak(utterance);
+}
 
 async function validateApiKey(apiKey) {
     try {
@@ -265,9 +235,22 @@ async function checkAnswerLogic() {
                 <div class="model-answer">
                     <h4>Wzorcowa odpowiedź:</h4>
                     <p>${currentQuestion.modelAnswer}</p>
+                    ${evaluation.score < 5 ? `
+                        <button onclick="speakText('${currentQuestion.modelAnswer.replace(/'/g, "\\'")}')" class="speak-button">
+                            <span class="speak-icon">🔊</span> Powtórz odpowiedź
+                        </button>
+                    ` : ''}
                 </div>
             </div>
         `;
+
+        // Automatically speak the correct answer if score is not perfect
+        if (evaluation.score < 5) {
+            // Small delay to let the user see the feedback first
+            setTimeout(() => {
+                speakText(currentQuestion.modelAnswer);
+            }, 1000);
+        }
 
         if (evaluation.score >= 3) {
             correctCount++;
